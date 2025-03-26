@@ -1,7 +1,7 @@
 <template>
-    <div class="bg-gray-100 w-screen">
-        <div class=" flex flex-col items-center mt-16 w-[30vw] place-self-center">
-            <header class="text-3xl font-medium mb-7">Find Your Next Experience</header>
+    <div class="bg-gray-100 w-screen ">
+        <div class=" flex flex-col items-center mt-16  w-[30vw] place-self-center">
+            <header class="text-3xl font-medium mb-7 text-center">Find Your Next Experience</header>
             <span class="mb-10 text-center">Discover events that match your interests, from tech conferences to music festivals, workshops to
                 networking opportunities.</span>
 

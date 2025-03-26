@@ -1,5 +1,5 @@
 <template>
-    <div class="w-screen  border-2 bg-[url(../assets/img/unievent-high-resolution-logo.png)] bg-cover">
+    <div class="w-screen  border-2 bg-[url(../assets/img/unievent-high-resolution-logo.png)] bg-cover ">
         <div class=" mb-16 flex flex-col w-[50vw] gap-12 border mt-16 pb-7 pl-5 pr-5 pt-5 relative place-self-center">
             <article class="mt-10">
                 <header class="text-5xl font-medium mb-4">Tech Innovation Summit</header>
@@ -8,7 +8,7 @@
             </article>
                 
                 <div class="flex gap-5 ">
-                    <div class="flex items-center border-2 w-[14vw] pl-2 pt-1 pb-1">
+                    <div class="flex items-center border-2 w-[14vw] pl-2 pt-1 pb-1 text-wrap">
                         <v-icon icon="mdi-calendar-blank-outline" class=""/>
                         <span class="ml-2">Wednesday, November 15, 2023</span>
                     </div>
