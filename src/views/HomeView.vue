@@ -1,19 +1,22 @@
 <template>
-    <Navbar />
-    <div class="w-screen h-screen flex flex-col ">
+    <div class="!px-[16.5vw]">
         <SlidingEventsPreview />
         <Search />
         <HomeEventSection />
+        <HomeCategorySection />
+        <!-- <Trial /> -->
     </div>
+
+
+
     
 </template>
 
 <script setup>
-import Navbar from '../components/Navbar.vue';
 import SlidingEventsPreview from '../components/SlidingEventsPreview.vue';
 import Search from '../components/Search.vue';
-import Event from '../components/Event.vue';
 import HomeEventSection from '../components/HomeEventSection.vue';
+import HomeCategorySection from '../components/HomeCategorySection.vue';
 
 </script>
 

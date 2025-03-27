@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-// import CategoryView from "@/views/CategoryView.vue";
+import EventsView from "../views/EventsView.vue";
+import EventView from "../views/EventView.vue";
 
 
 const router = createRouter({
@@ -11,11 +12,15 @@ const router = createRouter({
             name: "home",
             component: HomeView
         },
-        // {
-        //     path: "/category",
-        //     name: "category",
-        //     component: CategoryView
-        // }
+        {
+            path: "/events",
+            name: "events",
+            component: EventsView
+        },{
+            path: "/event",
+            name: "event",
+            component: EventView
+        }
     ]
 })
 
