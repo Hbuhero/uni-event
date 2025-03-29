@@ -1,9 +1,9 @@
 <template>
-    <div class="w-[70vw] mt-16">
-        <div class="flex justify-between pr-2 pl-2 pb-2 pt-7 mb-4">
-            <header class="text-3xl">Upcoming Events</header>
-            <a href="#" class="flex items-center">
-                <span class="mr-4 text-sm">View All</span>
+    <div class=" !px-[16.5vw] border !pb-[4vw] ">
+        <div class="flex justify-between pr-2 pl-2 pb-7 !pt-[5vw] mb-4">
+            <header class="text-4xl font-medium">Upcoming Events</header>
+            <a href="#" class="flex items-center link">
+                <span class="mr-4 text-sm font-medium">View All</span>
                 <v-icon icon="mdi-arrow-right" size="17px"/>
             </a>
         </div>

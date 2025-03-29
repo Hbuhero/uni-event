@@ -1,6 +1,7 @@
 <template>
-    <div class="!px-[16.5vw]">
-        <SlidingEventsPreview />
+
+    <div class=" ">
+        <SlidingEventsPreview />        
         <Search />
         <HomeEventSection />
         <HomeCategorySection />
