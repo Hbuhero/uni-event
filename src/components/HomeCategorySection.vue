@@ -28,23 +28,32 @@
     </div>
 
     <!-- Call to Action Section -->
-    <div class="bg-blue-100 py-8 md:py-10">
-        <div class="flex flex-col items-center px-4 md:px-12 max-w-4xl mx-auto text-center">
+    <div class="!bg-blue-100 !py-8 md:!py-10">
+        <div class="flex flex-col items-center !px-4 md:!px-12 max-w-4xl mx-auto text-center">
             <h1 class="text-2xl md:text-4xl mb-4 md:mb-5 font-semibold">Ready to Host Your Own Event?</h1>
             <h3 class="text-sm md:text-base mb-6 md:mb-8 text-gray-700">
                 Create and manage your events with our powerful platform. Reach a wider audience and provide an
                 exceptional experience for your attendees.
             </h3>
 
-            <button class="bg-blue-700 text-white px-6 py-2.5 rounded-lg hover:bg-blue-800 transition-colors">
-                <span class="text-sm md:text-base tracking-widest font-medium">Create an Event</span>
-            </button>
+            <div class="button">
+                <button @click="createEvent">
+                    Create an Event
+                </button>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const createEvent = () =>{
+    router.push('/add-event')
+}
 
 // Sample categories data - replace with your actual data
 const categories = ref([

@@ -128,6 +128,10 @@ export default defineConfig({
     ),
     vuetify({ autoImport: true }),
   ],
+  server: {
+    host: true, // This will allow access from any IP address
+    port: 3000, // You can specify your preferred port
+  },
   alias: {
     vue: 'vue/dist/vue.esm-bundler.js'
   }

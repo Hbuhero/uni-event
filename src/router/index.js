@@ -7,7 +7,7 @@ import CategoryView from "../views/CategoryView.vue";
 import ProfileView from "../views/ProfileView.vue";
 // import TriaView from "../views/tria.vue";
 import HelpCenter from "../views/HelpCenterView.vue"
-// import TryView from "../views/try.vue";
+import TryView from "../views/try.vue";
 import AddEventView from "../views/AddEventView.vue";
 import ProfileEdit from "../components/ProfileEdit.vue";
 import NotFoundView from "../views/404View.vue";
@@ -50,11 +50,11 @@ const router = createRouter({
         //     name: "tria",
         //     component: TriaView
         // },
-        // {
-        //     path: "/try",
-        //     name: "try",
-        //     component: TryView
-        // },
+        {
+            path: "/try",
+            name: "try",
+            component: TryView
+        },
         {
             path: "/help",
             name: "help",

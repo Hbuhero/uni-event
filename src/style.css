@@ -2,7 +2,7 @@
 
 
 .badge {
-    @apply absolute top-0 rounded-full border mt-2 pl-3 pr-3 text-xs font-extralight
+    @apply absolute top-0 rounded-full border mt-2 pl-4 pr-4 text-xs font-extralight
 }
 
 .button {

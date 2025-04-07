@@ -3,7 +3,7 @@
         <div class="border rounded-lg relative w-full">
             <img src="../assets/img/unievent-high-resolution-logo.png" alt="" class="mb-7 w-full h-52 object-cover">
 
-            <div class="px-4 sm:px-5 mb-3">
+            <div class="!px-4 sm:!px-5 mb-3">
                 <h2 class="text-xl sm:text-2xl mb-4">Annual Jazz Festival</h2>
                 <p class="text-sm text-gray-500 mb-7">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
                     id animi natus, fugiat reiciendis harum ipsam corporis cum laboriosam dolore.</p>
