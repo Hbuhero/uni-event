@@ -36,10 +36,11 @@ export default defineConfig({
             '6xl': '3.75rem',    // 60px
           },
           colors: {
+
             border: 'hsl(var(--border))',
             input: 'hsl(var(--input))',
             ring: 'hsl(var(--ring))',
-            background: 'hsl(var(--background))',
+            background: '#f9fafb',
             foreground: 'hsl(var(--foreground))',
             primary: {
               DEFAULT: 'hsl(var(--primary))',

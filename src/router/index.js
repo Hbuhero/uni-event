@@ -5,10 +5,12 @@ import EventView from "../views/EventView.vue";
 import CategoriesView from "../views/CategoriesView.vue";
 import CategoryView from "../views/CategoryView.vue";
 import ProfileView from "../views/ProfileView.vue";
-import TriaView from "../views/tria.vue";
+// import TriaView from "../views/tria.vue";
 import HelpCenter from "../views/HelpCenterView.vue"
-import TryView from "../views/try.vue";
-import TryView2 from "../views/try2.vue";
+// import TryView from "../views/try.vue";
+import AddEventView from "../views/AddEventView.vue";
+import ProfileEdit from "../components/ProfileEdit.vue";
+import NotFoundView from "../views/404View.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -38,28 +40,47 @@ const router = createRouter({
         {
             path: "/profile",
             name: "profile",
-            component: ProfileView
+            component: ProfileView,
+            children: [
+                
+            ]
         },
-        {
-            path: "/tria",
-            name: "tria",
-            component: TriaView
-        },
-        {
-            path: "/try",
-            name: "try",
-            component: TryView
-        },
+        // {
+        //     path: "/tria",
+        //     name: "tria",
+        //     component: TriaView
+        // },
+        // {
+        //     path: "/try",
+        //     name: "try",
+        //     component: TryView
+        // },
         {
             path: "/help",
             name: "help",
             component: HelpCenter
         },
         {
-            path: "/try2",
-            name: "try2",
-            component: TryView2
-        }
+            path: "/add-event",
+            name: "add-event",
+            component: AddEventView
+        },
+        {
+            path: "/edit",
+            name: "edit",
+            component: ProfileEdit
+        },
+        {
+            
+            path: "/:catchall(.*)*",
+            name: "Not Found",
+            component: NotFoundView
+            
+        },
+        {
+            path: "/home",
+            redirect: "/"  // redirects the path above to the path below
+        },
     ]
 })
 

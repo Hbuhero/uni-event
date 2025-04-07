@@ -1,10 +1,8 @@
 <template>
-  <div class=" bg-gray-50">
-    
     <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
       <!-- Profile header -->
-      <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-6 mt-16">
-        <div class="px-4 py-5 sm:px-6 ">
+      <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-6">
+        <div class="px-4 py-5 sm:px-6">
           <div class="flex items-center">
             <div class="h-24 w-24 rounded-full overflow-hidden bg-gray-100">
               <img src="../assets/img/product-school--GajrOEN6m4-unsplash.jpg" alt="Profile"
@@ -52,7 +50,23 @@
                   <dt class="text-sm font-medium text-gray-500">Location</dt>
                   <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">San Francisco, CA</dd>
                 </div>
-                
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt class="text-sm font-medium text-gray-500">Interests</dt>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2 mb-2">
+                      Music
+                    </span>
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 mr-2 mb-2">
+                      Technology
+                    </span>
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 mr-2 mb-2">
+                      Food & Drink
+                    </span>
+                  </dd>
+                </div>
               </dl>
             </div>
           </div>
@@ -232,41 +246,4 @@
         </div>
       </div>
     </main>
-  </div>
 </template>
-
-<!-- remove recent activity with general settings including 
- subscription to categories 
- notifications for events and new events in categories, 
- preferences - categories and location,
- calendar sync 
- accessibility
- 
--->
-
-<script setup>
-import { ref } from 'vue';
-
-const selectedCategories = ref(['Music', 'Technology', 'Sports', 'Food & Drink']);
-
-const removeCategory = (category) => {
-  selectedCategories.value = selectedCategories.value.filter(c => c !== category);
-}
-
-const isEnabled = ref(true)
-
-</script>
-
-<!-- <script>
-export default {
-  name: 'UserProfile',
-  data() {
-    return {
-      user: {
-        name: 'Alex Johnson',
-        title: 'Event Enthusiast',
-        email: 'alex@example.com',
-        phone: '(555) 123-4567',
-        location: 'San Francisco, CA',
-        memberSince: 'March 2024',
-        ev -->

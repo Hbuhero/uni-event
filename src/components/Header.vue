@@ -7,10 +7,10 @@
         <!-- <header class="font-bold tracking-tighter text-2xl">UniEvent</header> -->
 
         <div class="tracking-wider ">
-            <a href="#"><span class="mr-3 pr-2 text-sm font-medium link">Home</span></a>
-            <a href="#"><span class="mr-3 pr-2 text-sm font-medium link">Events</span></a>
-            <a href="#"><span class="mr-3 pr-2 text-sm font-medium link">Categories</span></a>
-            <a href="#"><span class="mr-3 pr-2 text-sm font-medium link">Log in</span></a>
+            <a href="/"><span class="mr-3 pr-2 text-sm font-medium link">Home</span></a>
+            <a href="/events"><span class="mr-3 pr-2 text-sm font-medium link">Events</span></a>
+            <a href="/categories"><span class="mr-3 pr-2 text-sm font-medium link">Categories</span></a>
+            <a href="/profile"><span class="mr-3 pr-2 text-sm font-medium link">Log in</span></a>
         </div>
     </div>
 </template>

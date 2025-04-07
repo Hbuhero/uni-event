@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[hsl(240,4.8%,95.9%)] !px-[16.5vw] pt-4 !pb-[4vw]">
+    <div class=" !px-[16.5vw] pt-4 !pb-[4vw]">
         <div class=" flex flex-col items-center mt-16  w-[30vw] place-self-center">
             <header class="text-3xl font-medium mb-7 text-center">Find Your Next Experience</header>
             <span class="mb-10 text-center">Discover events that match your interests, from tech conferences to music festivals, workshops to
