@@ -7,10 +7,10 @@
         </div>
 
         <!-- Categories Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 md:px-8 w-full max-w-7xl">
+        <div class="grid grid-cols-2  sm:grid-cols-3  lg:grid-cols-4 gap-4 !px-4 md:px-8 w-full max-w-7xl">
             <!-- Category Card - repeated for each category -->
-            <div v-for="(category, index) in categories" :key="index"
-                class="border bg-white rounded-lg flex flex-col items-center !p-4 md:p-5 hover:shadow-lg transition-shadow">
+            <div v-for="category in categories" :key="category.uuid" @click="goToCategory(category.uuid)"
+                class="border bg-white rounded-lg flex flex-col items-center !p-4 sm:!p-3 sm:!px-3 md:!p-5 hover:shadow-lg transition-shadow">
                 <!-- Icon Container -->
                 <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-300 rounded-full relative">
                     <div
@@ -20,7 +20,7 @@
 
                 <!-- Category Info -->
                 <div class="flex flex-col mt-4 md:mt-5 items-center">
-                    <span class="font-medium text-sm md:text-base text-center">{{ category.name }}</span>
+                    <span class="font-medium text-sm md:text-base text-center">{{ category.category }}</span>
                     <span class="text-xs text-gray-600">{{ category.eventCount }} Events</span>
                 </div>
             </div>
@@ -46,24 +46,40 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { categoryService } from '../services/categoryService'
 
 const router = useRouter()
+const categories = ref([])
 
 const createEvent = () =>{
     router.push('/add-event')
 }
 
-// Sample categories data - replace with your actual data
-const categories = ref([
-    { name: 'Art & Culture', eventCount: 1 },
-    { name: 'Music', eventCount: 3 },
-    { name: 'Technology', eventCount: 2 },
-    { name: 'Sports', eventCount: 4 },
-    { name: 'Food & Drink', eventCount: 2 },
-    { name: 'Business', eventCount: 1 }
-])
+const goToCategory = (uuid) => {
+    router.push(`/category/${uuid}`)
+}
+
+
+const getCategories = async () => {
+    try{
+        const response = await categoryService.getCategories({
+            size: 8
+        })
+
+        console.log(response);
+        
+        categories.value = response.content
+    } catch (error) {
+
+    }
+
+}
+
+onMounted(() => {
+    getCategories()
+})
 </script>
 
 <style scoped>

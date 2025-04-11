@@ -14,7 +14,7 @@
                                         {{ currentEvent.title }}
                                     </header>
                                     <p class="text-gray-800 text-base sm:text-lg font-light">
-                                        {{ currentEvent.description }}
+                                        {{ currentEvent.about }}
                                     </p>
                                 </article>
 
@@ -22,7 +22,7 @@
                                     <div class="flex items-center w-full sm:w-[14vw] pl-2 pt-1 pb-1">
                                         <v-icon icon="mdi-calendar-blank-outline" class="text-gray-700 min-w-[24px]" />
                                         <span class="ml-2 text-gray-700 text-sm sm:text-base break-words">
-                                            {{ currentEvent.date }}
+                                            {{ currentEvent.startingDate }}
                                         </span>
                                     </div>
 
@@ -35,9 +35,9 @@
                                 </div>
 
                                 <div class="flex flex-col sm:flex-row gap-4">
-                                    <div class="button text-sm w-full sm:w-auto text-center cursor-pointer">View Details
+                                    <div class="button text-sm w-full sm:w-auto text-center cursor-pointer" @click="goToEvent(currentEvent.uuid)">View Details
                                     </div>
-                                    <div class="button text-sm w-full sm:w-auto text-center cursor-pointer">
+                                    <div class="button text-sm w-full sm:w-auto text-center cursor-pointer" @click="register(currentEvent.url)">
                                         Register Now ({{ currentEvent.price }})
                                     </div>
                                 </div>
@@ -63,43 +63,45 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue';
+import { eventService } from '../services/eventService';
+import { useRouter } from 'vue-router';
 
-// Sample events data (replace with your actual data source)
-const events = [
-    {
-        title: 'Tech Innovation Summit',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum ullam provident ipsum facilis.',
-        date: 'Wednesday, November 15, 2023',
-        location: 'Global Convention Center, New York',
-        category: 'Technology',
-        price: '299',
-        image: '/path/to/image1.jpg'
-    },
-    {
-        title: 'Digital Marketing Conference',
-        description: 'Join industry leaders for insights into the latest digital marketing trends and strategies.',
-        date: 'Friday, December 1, 2023',
-        location: 'Metropolitan Hall, Chicago',
-        category: 'Marketing',
-        price: '199',
-        image: '/path/to/image2.jpg'
-    },
-    // Add more events as needed
-];
+const router = useRouter()
+const events = ref([{}])
+
+const goToEvent = (uuid) => {
+    router.push(`/event/${uuid}`)
+}
+
+const register = (url) => {
+    window.location.href = url
+}
+
+const getRandomEvents = async () => {
+    try {
+        const response = await eventService.getRandomEvents()
+        console.log(response);
+        
+        events.value = response.data.content
+    } catch (error) {
+
+    }
+}
 
 const currentEventIndex = ref(0);
 let intervalId = null;
 
 const nextSlide = () => {
-    currentEventIndex.value = (currentEventIndex.value + 1) % events.length;
+    currentEventIndex.value = (currentEventIndex.value + 1) % events.value.length;
 };
 
 // Computed property to get current event
-const currentEvent = computed(() => events[currentEventIndex.value]);
+const currentEvent = computed(() => events.value[currentEventIndex.value]);
 
 // Start automatic sliding
 onMounted(() => {
-    intervalId = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    getRandomEvents(),
+    intervalId = setInterval(nextSlide, 4000); // Change slide every 5 seconds
 });
 
 // Clean up interval when component is destroyed

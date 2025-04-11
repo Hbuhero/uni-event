@@ -24,7 +24,7 @@ const router = createRouter({
             name: "events",
             component: EventsView
         },{
-            path: "/event",
+            path: "/event/:uuid",
             name: "event",
             component: EventView
         },{
@@ -33,7 +33,7 @@ const router = createRouter({
             component: CategoriesView
         },
         {
-            path: "/category",
+            path: "/category/:uuid",
             name: "category",
             component: CategoryView
         },

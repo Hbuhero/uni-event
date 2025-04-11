@@ -69,17 +69,17 @@
                 <h2 class="text-2xl font-semibold mb-6">All Categories</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Category Card -->
-                    <div v-for="category in categories" :key="category.id"
+                    <div v-for="category in categories" :key="category.uuid" @click="goToCategory(category.uuid)"
                         class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer">
                         <div class="relative h-40 bg-gray-200 rounded-t-xl overflow-hidden">
-                            <img :src="category.image" :alt="category.name" class="w-full h-full object-cover">
+                            <img :src="category.image" :alt="category.category" class="w-full h-full object-cover">
                             <div v-if="category.trending"
                                 class="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold !px-2 !py-1 rounded">
                                 Trending
                             </div>
                         </div>
                         <div class="!p-4">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ category.name }}</h3>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ category.category }}</h3>
                             <div class="flex items-center text-gray-500 text-sm">
                                 <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -99,71 +99,32 @@
 </template>
 
 <script setup>
-const categories = [
-    {
-        id: 1,
-        name: 'Music',
-        image: 'https://source.unsplash.com/random/400x320/?music',
-        eventCount: 128,
-        trending: true
-    },
-    {
-        id: 2,
-        name: 'Sports',
-        image: 'https://source.unsplash.com/random/400x320/?sports',
-        eventCount: 95,
-        trending: false
-    },
-    {
-        id: 3,
-        name: 'Food & Drink',
-        image: 'https://source.unsplash.com/random/400x320/?food',
-        eventCount: 76,
-        trending: true
-    },
-    {
-        id: 4,
-        name: 'Arts & Culture',
-        image: 'https://source.unsplash.com/random/400x320/?art',
-        eventCount: 64,
-        trending: false
-    },
-    {
-        id: 5,
-        name: 'Business',
-        image: 'https://source.unsplash.com/random/400x320/?business',
-        eventCount: 52,
-        trending: false
-    },
-    {
-        id: 6,
-        name: 'Technology',
-        image: 'https://source.unsplash.com/random/400x320/?technology',
-        eventCount: 48,
-        trending: true
-    }
-];
+import { ref, onMounted } from 'vue';
+import { categoryService } from '../services/categoryService';
+import { useRouter } from 'vue-router';
 
-const recentCategories = [
-    {
-        id: 1,
-        name: 'Music',
-        image: 'https://source.unsplash.com/random/400x320/?music',
-        eventCount: 128
-    },
-    {
-        id: 2,
-        name: 'Sports',
-        image: 'https://source.unsplash.com/random/400x320/?sports',
-        eventCount: 95
-    },
-    {
-        id: 3,
-        name: 'Food & Drink',
-        image: 'https://source.unsplash.com/random/400x320/?food',
-        eventCount: 76
+const categories = ref([])
+const router = useRouter()
+
+const getCategories = async () => {
+    try{
+        const response = await categoryService.getCategories({
+            size: 8
+        })
+        
+        categories.value = response.content
+    } catch (error) {
+
     }
-];
+}
+
+const goToCategory = (uuid) => {
+    router.push(`/category/${uuid}`)
+}
+
+onMounted(() => {
+    getCategories()
+})
 </script>
 
 <style lang="scss" scoped></style>

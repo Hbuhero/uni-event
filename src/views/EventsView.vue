@@ -18,54 +18,53 @@
             </div>
         </div>
 
-        <div class=" !px-[16.5vw]">
-
-
+        <div class=" !p-6 max-w-7xl mx-auto !py-6 sm:!px-6 lg:!px-8 ">
             <div class="flex !mt-10 !mb-10">
-
                 <div class="mt-4 border w-[6rem] rounded-full !px-2 !py-1 text-xs text-black text-center">
                     <span>All Events</span>
                 </div>
-
-
             </div>
 
-            <Event />
-        </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <Event v-for="event in events" :key="event.uuid" :event="event" @click="goToEvent"/>
+            </div>
 
-        <div class="flex items-center justify-center space-x-1 my-8">
-        <button class="px-4 py-2 text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed" 
-                :disabled="currentPage === 1">
-          Previous
-        </button>
-        
-        <div class="flex items-center space-x-1">
-          <button v-for="page in totalPages" 
-                  :key="page" 
-                  :class="[
-                    'px-4 py-2 border rounded-lg',
-                    currentPage === page 
-                      ? 'bg-indigo-600 text-white border-indigo-600' 
-                      : 'text-gray-500 bg-white border-gray-300 hover:bg-gray-50'
-                  ]">
-            {{ page }}
-          </button>
-        </div>
+    </div>
 
-        <button class="px-4 py-2 text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-                :disabled="currentPage === totalPages">
-          Next
-        </button>
-      </div>
-
+    
 
     </div>
 </template>
 
 <script setup>
 import Event from '../components/Event.vue';
+import { ref, onMounted } from 'vue';
+import { eventService } from '../services/eventService';
+import { useRouter } from 'vue-router';
 
-const nums = 4
+
+const router = useRouter()
+const events = ref([])
+
+const getEvents = async () => {
+    try {
+        
+        const response = await eventService.getEvents({
+            
+        })
+        events.value = response.content
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const goToEvent = (uuid) => {
+    router.push(`/event/${uuid}`)
+}
+
+onMounted(() => {
+    getEvents()
+})
 </script>
 
 <style lang="scss" scoped></style>
