@@ -5,16 +5,16 @@
         <div class="absolute inset-0">
           <img 
             :src="category.image" 
-            :alt="category.category"
+            :alt="category.name"
             class="w-full h-full object-cover"
           />
           <div class="absolute inset-0 bg-black bg-opacity-50"></div>
         </div>
-        <div class="relative max-w-7xl mx-auto px-4 h-full flex items-end pb-8">
+        <div class="relative max-w-7xl mx-auto px-4 h-full flex items-end pb-8 justify-between">
           <div class="text-white">
-            <h1 class="text-4xl lg:text-5xl font-bold mb-4">{{ category.category }}</h1>
+            <h1 class="text-4xl lg:text-5xl font-bold mb-4">{{ category.name }}</h1>
             <div class="flex items-center space-x-4 text-gray-200 justify-between">
-              <span class="flex items-center">
+              <span class="flex items-center mr-4">
                 <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
@@ -27,6 +27,10 @@
                 {{ category.followers }} Followers
               </span>
             </div>
+          </div>
+
+          <div class="button">
+            <button>Subscribe</button>
           </div>
         </div>
       </div>
@@ -60,9 +64,12 @@
   
           <!-- Load More Button -->
           <div class="text-center mt-8">
-            <button class="bg-white text-indigo-600 border border-indigo-600 px-6 py-2 rounded-lg hover:bg-indigo-50 transition-colors duration-200">
+            <div class="button">
+              <button class="">
               Load More Events
             </button>
+            </div>
+            
           </div>
         </div>
       </div>

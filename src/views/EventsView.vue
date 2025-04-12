@@ -19,19 +19,22 @@
         </div>
 
         <div class=" !p-6 max-w-7xl mx-auto !py-6 sm:!px-6 lg:!px-8 ">
-            <div class="flex !mt-10 !mb-10">
-                <div class="mt-4 border w-[6rem] rounded-full !px-2 !py-1 text-xs text-black text-center">
-                    <span>All Events</span>
+            <div class="flex !mt-10 !mb-10 justify-between">
+                <div @click="getAllEvents" class="mt-4 border w-[6rem] h-[2rem] rounded-full !px-2 !py-1 text-xs text-black text-center">
+                    <span>All</span>
+                </div>
+                <div v-for="category in categories" :key="category.uuid" @click="viewCategoryEvents(category)" class="mt-4 border w-[6rem] rounded-full !px-2 !py-1 text-xs text-black text-center">
+                    <span >{{ category.name }}</span>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <Event v-for="event in events" :key="event.uuid" :event="event" @click="goToEvent"/>
+                <Event v-for="event in events" :key="event.uuid" :event="event" />
             </div>
 
-    </div>
+        </div>
 
-    
+
 
     </div>
 </template>
@@ -41,16 +44,18 @@ import Event from '../components/Event.vue';
 import { ref, onMounted } from 'vue';
 import { eventService } from '../services/eventService';
 import { useRouter } from 'vue-router';
+import { categoryService } from '../services/categoryService';
 
 
 const router = useRouter()
 const events = ref([])
+const categories = ref([{}])
 
-const getEvents = async () => {
+const getAllEvents = async () => {
     try {
-        
+
         const response = await eventService.getEvents({
-            
+
         })
         events.value = response.content
     } catch (error) {
@@ -58,12 +63,42 @@ const getEvents = async () => {
     }
 }
 
-const goToEvent = (uuid) => {
-    router.push(`/event/${uuid}`)
+const getCategories = async () => {
+    try {
+        const response = await categoryService.getCategories({})
+
+        categories.value = response.content
+    } catch (error) {
+
+    }
 }
 
+const viewCategoryEvents = async (category) => {
+    // router.push(`/events/${category.category}`)
+    try {
+        
+        
+        const response = await eventService.getEventsByCategory({
+            categoryUuid: category.uuid
+        })
+
+        events.value = response.data.content
+
+        
+        
+    } catch (error) {
+
+    }
+}
+
+// const goToEvent = (uuid) => {
+//     router.push(`/event/${uuid}`)
+// }
+
 onMounted(() => {
-    getEvents()
+    getAllEvents()
+    viewCategoryEvents()
+    getCategories()
 })
 </script>
 

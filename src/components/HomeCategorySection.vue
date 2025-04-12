@@ -20,7 +20,7 @@
 
                 <!-- Category Info -->
                 <div class="flex flex-col mt-4 md:mt-5 items-center">
-                    <span class="font-medium text-sm md:text-base text-center">{{ category.category }}</span>
+                    <span class="font-medium text-sm md:text-base text-center">{{ category.name }}</span>
                     <span class="text-xs text-gray-600">{{ category.eventCount }} Events</span>
                 </div>
             </div>

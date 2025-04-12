@@ -1,7 +1,8 @@
 <template>
 
     <div class="border rounded-lg relative w-full">
-        <img src="../assets/img/unievent-high-resolution-logo.png" alt="" class="!mb-7 w-full h-52 object-cover">
+        <div  @click="goToEvent(event.uuid)">
+            <img src="../assets/img/unievent-high-resolution-logo.png" alt="" class="!mb-7 w-full h-52 object-cover">
 
         <div class="!px-4 sm:!px-5 mb-3">
             <h2 class="text-xl sm:text-2xl mb-4">{{ event.title }}</h2>
@@ -22,8 +23,9 @@
                 <span class="text-sm text-gray-500 break-words">{{ event.location }}</span>
             </div>
         </div>
+        </div>
 
-        <div class="badge mt-3 ml-3">
+        <div @click="goToCategory(event.category)" class="badge mt-3 ml-3 cursor-pointer">
             <span>{{ event.category }}</span>
         </div>
     </div>
@@ -33,15 +35,32 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import {eventService} from "../services/eventService"
+import { useRouter } from 'vue-router';
+import { categoryService } from '../services/categoryService';
 
+const router = useRouter()
 const { size, event } = defineProps({
     size: Number,
     event: Object,
 })
 
+const goToCategory = async (category) => {
+    try {
+        const response =await categoryService.getCategoryByName(category)
+
+        router.push(`/category/${response.data.uuid}`)
+    } catch (error) {
+
+    }
+}
+
+const goToEvent = (uuid) => {
+    router.push(`/event/${uuid}`)
+}
+
 
 onMounted(() => {
-    console.log(event);
+    
     
 })
 

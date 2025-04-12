@@ -9,6 +9,11 @@ export default defineConfig({
     vue(),
     tailwindcss(
       {
+        content: [
+          './index.html',
+          './src/**/*.{vue,js,ts,jsx,tsx}',
+          './src/assets/**/*.{css}', // 👈 add this if your custom classes are in CSS files
+        ],
         theme: {
         container: {
           center: true,

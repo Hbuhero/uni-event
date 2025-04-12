@@ -30,5 +30,17 @@ export const categoryService = {
         } catch (error) {
 
         }
+    },
+
+    async getCategoryByName(name) {
+        try {
+            const response = await api.get(
+                `category/name/${name}`
+            )
+
+            return response.data
+        } catch (error) {
+
+        }
     }
 }

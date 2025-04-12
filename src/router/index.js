@@ -5,7 +5,7 @@ import EventView from "../views/EventView.vue";
 import CategoriesView from "../views/CategoriesView.vue";
 import CategoryView from "../views/CategoryView.vue";
 import ProfileView from "../views/ProfileView.vue";
-// import TriaView from "../views/tria.vue";
+import TriaView from "../views/try.vue";
 import HelpCenter from "../views/HelpCenterView.vue"
 import TryView from "../views/try.vue";
 import AddEventView from "../views/AddEventView.vue";
@@ -21,8 +21,11 @@ const router = createRouter({
         },
         {
             path: "/events",
-            name: "events",
-            component: EventsView
+            component: EventsView,
+            children: {
+                path: "/:category",
+                component: EventsView
+            }
         },{
             path: "/event/:uuid",
             name: "event",
@@ -45,11 +48,11 @@ const router = createRouter({
                 
             ]
         },
-        // {
-        //     path: "/tria",
-        //     name: "tria",
-        //     component: TriaView
-        // },
+        {
+            path: "/try",
+            name: "try",
+            component: TriaView
+        },
         {
             path: "/try",
             name: "try",

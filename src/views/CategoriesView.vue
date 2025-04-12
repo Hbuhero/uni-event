@@ -72,14 +72,14 @@
                     <div v-for="category in categories" :key="category.uuid" @click="goToCategory(category.uuid)"
                         class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer">
                         <div class="relative h-40 bg-gray-200 rounded-t-xl overflow-hidden">
-                            <img :src="category.image" :alt="category.category" class="w-full h-full object-cover">
+                            <img :src="category.image" :alt="category.name" class="w-full h-full object-cover">
                             <div v-if="category.trending"
                                 class="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold !px-2 !py-1 rounded">
                                 Trending
                             </div>
                         </div>
                         <div class="!p-4">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ category.category }}</h3>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ category.name }}</h3>
                             <div class="flex items-center text-gray-500 text-sm">
                                 <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

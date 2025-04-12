@@ -1,30 +1,53 @@
 // App.vue
-<template>
+<!-- <template>
   <div class="virtual-event-app">
-    <!-- Header Component -->
+   
     
     
-    <!-- Hero Banner Component -->
+    
     <HeroBanner />
     
-    <!-- Event Details Component -->
+   
     <EventDetails />
     
-    <!-- Event Description Component -->
+  
     <EventDescription />
     
-    <!-- Speaker Schedule Component -->
+   
     <SpeakerSchedule />
     
-    <!-- Event Location Component -->
+    
     <EventLocation />
     
-    <!-- Footer Component -->
+    
     
   </div>
-</template>
+</template> -->
 
 // App.vue
+<template>
+   <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold">Settings</h1>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title flex items-center gap-2">
+            <v-icon icon="mdi-bell-badge-outline"/>
+            <span>Notification Preference</span>
+          </div>
+          <div class="card-description">
+            Manage how you receive notifications about events
+          </div>
+        </div>
+
+        <div class="card-content space-y-6">
+          
+        </div>
+      </div>
+   </div>
+</template>
 
 
 <!-- <script>
@@ -46,7 +69,7 @@ export default {
 }
 </script> -->
 
-<script setup>
+<!-- <script setup>
 import HeroBanner from '../components/HeroBanner.vue';
 import EventDetails from '../components/EventDetails.vue';
 import EventDescription from '../components/EventDescription.vue';
@@ -57,7 +80,7 @@ import EventLocation from '../components/EventLocation.vue';
 </script>
 
 <style>
-/* Global Styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -100,7 +123,8 @@ body {
   background-color: #d43e3e;
   transform: translateY(-2px);
 }
-</style> -->
+</style>  -->
+
 
 
 
