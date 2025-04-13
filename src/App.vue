@@ -5,8 +5,8 @@ import Footer from './components/Footer.vue';
 </script>
 
 <template>
-  <div class="bg-[#f9fafb]">
-    <Header />
+  <div class="bg-primary-foreground">
+    <!-- <Header /> -->
 
       <RouterView />
 

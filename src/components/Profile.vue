@@ -247,3 +247,17 @@
       </div>
     </main>
 </template>
+
+
+<script setup>
+import { ref } from 'vue';
+
+const selectedCategories = ref(['Music', 'Technology', 'Sports', 'Food & Drink']);
+
+const removeCategory = (category) => {
+  selectedCategories.value = selectedCategories.value.filter(c => c !== category);
+}
+
+const isEnabled = ref(true)
+
+</script>

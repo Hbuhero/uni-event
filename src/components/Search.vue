@@ -14,7 +14,7 @@
                 <div class="relative flex-grow">
                     <input type="search" class="w-full border !px-4 !py-2.5 
                                placeholder:text-xs placeholder:font-light 
-                               rounded-xl sm:rounded-2xl
+                               rounded-xl sm:rounded-2xl 
                                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
                                transition-all duration-200" placeholder="Search for events...">
                     
