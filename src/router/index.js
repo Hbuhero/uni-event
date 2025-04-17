@@ -6,13 +6,14 @@ import CategoriesView from "../views/CategoriesView.vue";
 import CategoryView from "../views/CategoryView.vue";
 import ProfileView from "../views/ProfileView.vue";
 import HelpCenter from "../views/HelpCenterView.vue"
-// import TryView from "../views/tria.vue";
+import TryView from "../views/Signup.vue";
 import AddEventView from "../views/AddEventView.vue";
 import ProfileEdit from "../components/ProfileEdit.vue";
 import NotFoundView from "../views/404View.vue";
 import Profile from "../components/Profile.vue";
 import Settings from "../components/Settings.vue";
 import UserEvents from "../components/UserEvents.vue";
+import Login from "../views/Login.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -49,23 +50,36 @@ const router = createRouter({
             children: [
                 {
                     path: "",
+                    name: "Profile",
                     component: Profile
                 },
                 {
                     path: "/settings",
+                    name: "settings",
                     component: Settings
                 },
                 {
                     path: "/your-events",
+                    name: "your-events",
                     component: UserEvents
-                }
+                },
+                {
+                    path: "/edit",
+                    name: "edit",
+                    component: ProfileEdit
+                },
             ]
         },
-        // {
-        //     path: "/try",
-        //     name: "try",
-        //     component: TryView
-        // },
+        {
+            path: "/try",
+            name: "try",
+            component: TryView
+        },
+        {
+            path: "/login",
+            name: "login",
+            component: Login
+        },
         // {
         //     path: "/try",
         //     name: "try",
@@ -81,11 +95,7 @@ const router = createRouter({
             name: "add-event",
             component: AddEventView
         },
-        {
-            path: "/edit",
-            name: "edit",
-            component: ProfileEdit
-        },
+        
         {
             
             path: "/:catchall(.*)*",

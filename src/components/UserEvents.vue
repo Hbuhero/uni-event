@@ -27,7 +27,7 @@
 
       <div class="w-full mb-4 ">
         <div class="grid w-full grid-cols-4 tabs-list !bg-secondary gap-4 text-center">
-          <div v-for="(tab, index) in tabs" :key="index" @click="activeTab = index"
+          <div v-for="(tab, index) in tabs" :key="index" @click="navigate(index)"
             class="w-full h-full flex items-center gap-1 tabs-trigger " :class="activeTab == index ? 'bg-white' : ''">
             <v-icon :icon="`${tab.icon}`" />
             <span class="">{{ tab.name }}</span>
@@ -36,7 +36,17 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div v-if="events.length === 0">
+        <v-card>
+          <v-card-text
+            class="text-center"
+          >
+            No available events
+          </v-card-text>
+        </v-card>
+        
+      </div>
+      <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <Event v-for="event in events" :key="event.uuid" :event="event" :size="9" @click="goToEvent(event.uuid)" />
       </div>
 
@@ -53,9 +63,10 @@
 <script setup>
 import Event from '../components/Event.vue';
 import Navbar from '../components/Navbar.vue';
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { eventService } from '../services/eventService.js';
 import { useRouter } from 'vue-router';
+import { userService } from '../services/userServices.js';
 
 const tabs = [
   { name: "All", icon: '' },
@@ -65,38 +76,51 @@ const tabs = [
 ]
 
 const activeTab = ref(0)
-
-const toggle = (index) => {
-
-  console.log(index);
-
-
-  if (isSelected.value[index]) return
-
-  isSelected.value.forEach((_, index) => {
-    isSelected.value[index] = false
-  })
-  isSelected.value[index] = true
-}
-
-const activeSection = ref('profile')
-const collapsed = ref(false)
-
-function onNavigate(id) {
-  activeSection.value = id
-}
-
-
 const router = useRouter()
+const eventResponse = ref([])
+
 const events = ref([])
 
-const getEvents = async () => {
+// computed(() => {
+//   console.log("ok", eventResponse.value[0]);
+//   console.log(tabs[activeTab.value].name.toUpperCase());
+//   if (tabs[activeTab.value].name.toUpperCase()){
+//     return eventResponse.value
+//   }
+//   eventResponse.value.filter(e => e.status === tabs[activeTab.value].name.toUpperCase())
+// })
+
+const navigate = async(index) => {
   try {
 
-    const response = await eventService.getEvents({
-      size: 9
+    activeTab.value = index
+  
+    if (tabs[index].name == 'All') {
+      console.log("inside all");
+      
+      return events.value = eventResponse.value
+    }
+    
+    events.value = eventResponse.value.filter(e => e.status == tabs[activeTab.value].name.toUpperCase())
+
+  } catch (error) {
+
+  }
+  
+}
+
+const getUserEvents = async () => {
+  try {
+
+    const response = await userService.getUserEvents({
+      size: 40
     })
-    events.value = response.content
+    
+    console.log(response.data.content);
+    
+    eventResponse.value = response.data.content
+    events.value = eventResponse.value
+
   } catch (error) {
     console.log(error)
   }
@@ -107,7 +131,7 @@ const goToEvent = (uuid) => {
 }
 
 onMounted(() => {
-  getEvents()
+  getUserEvents()
 })
 
 

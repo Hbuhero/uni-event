@@ -41,6 +41,7 @@
                 :icon="rail ? 'mdi-logout' : null"
               :block="!rail"
               :variant="rail ? 'plain' : 'tonal'"
+              @click="logout()"
               >
               Logout
             </v-btn>
@@ -73,5 +74,10 @@ import { useRouter } from 'vue-router'
 
     const showEvents = () => {
       router.push("your-events")
+    }
+
+    const logout = () => {
+      localStorage.removeItem('jwt')
+      router.push('/')
     }
   </script>

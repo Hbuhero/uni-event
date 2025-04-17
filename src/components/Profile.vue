@@ -9,13 +9,13 @@
                 class="h-full w-full object-cover" />
             </div>
             <div class="ml-6">
-              <h2 class="text-2xl font-bold text-gray-900">Alex Johnson</h2>
+              <h2 class="text-2xl font-bold text-gray-900">{{ user.firstName + " " + user.lastName }}</h2>
               <p class="text-sm text-gray-500">Event Enthusiast</p>
               <div class="mt-2 flex space-x-3">
 
                 <div
                   class="cursor-pointer !px-4 !py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-black hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                  <span>Edit Profile</span>
+                  <router-link to="/edit"><span>Edit Profile</span></router-link>
                 </div>
               </div>
             </div>
@@ -36,37 +36,21 @@
               <dl>
                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt class="text-sm font-medium text-gray-500">Full name</dt>
-                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Alex Johnson</dd>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ user.firstName + " " + user.lastName }}</dd>
                 </div>
                 <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt class="text-sm font-medium text-gray-500">Email address</dt>
-                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">alex@example.com</dd>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ user.username }}</dd>
                 </div>
                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt class="text-sm font-medium text-gray-500">Phone number</dt>
-                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">(555) 123-4567</dd>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ user.phone }}</dd>
                 </div>
                 <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt class="text-sm font-medium text-gray-500">Location</dt>
-                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">San Francisco, CA</dd>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ user.address }}</dd>
                 </div>
-                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt class="text-sm font-medium text-gray-500">Interests</dt>
-                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    <span
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2 mb-2">
-                      Music
-                    </span>
-                    <span
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 mr-2 mb-2">
-                      Technology
-                    </span>
-                    <span
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 mr-2 mb-2">
-                      Food & Drink
-                    </span>
-                  </dd>
-                </div>
+               
               </dl>
             </div>
           </div>
@@ -120,13 +104,15 @@
                 <p class="mt-1 max-w-2xl text-sm text-gray-500">Events you're attending or hosting.</p>
               </div>
               <button type="button"
+                
                 class="inline-flex items-center px-3 py-1 border border-transparent text-sm font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                View All
+                <router-link to="/your-events">View All</router-link>
+                
               </button>
             </div>
             <div class="border-t border-gray-200">
               <ul role="list" class="divide-y divide-gray-200">
-                <li class="px-4 py-4 sm:px-6">
+                <li v-for="event in events" class="px-4 py-4 sm:px-6">
                   <div class="flex items-center justify-between">
                     <div class="flex items-center">
                       <div
@@ -138,24 +124,14 @@
                         </svg>
                       </div>
                       <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-900">Tech Conference 2025</p>
-                        <div class="flex items-center text-sm text-gray-500">
-                          <svg class="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                              d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                              clip-rule="evenodd" />
-                          </svg>
-                          <p>April 15, 2025 • 9:00 AM</p>
+                        <p class="text-sm font-medium text-gray-900">{{ event.title }}</p>
+                        <div class="flex items-center text-sm text-gray-500 !my-1">
+                          <v-icon icon="mdi-calendar-outline" ></v-icon>
+                          <p class="ml-1">{{ event.startingDate }}</p>
                         </div>
-                        <div class="flex items-center text-sm text-gray-500">
-                          <svg class="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                              d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                              clip-rule="evenodd" />
-                          </svg>
-                          <p>Convention Center, San Francisco</p>
+                        <div class="flex items-center text-sm text-gray-500 !my-1">
+                          <v-icon icon="mdi-map-marker-outline"/>
+                          <p class="ml-1">{{ event.location }}</p>
                         </div>
                       </div>
                     </div>
@@ -167,6 +143,8 @@
                     </div>
                   </div>
                 </li>
+
+                
               </ul>
             </div>
           </div>
@@ -250,8 +228,11 @@
 
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { userService } from '../services/userServices';
 
+const user  = ref({})
+const events = ref([])
 const selectedCategories = ref(['Music', 'Technology', 'Sports', 'Food & Drink']);
 
 const removeCategory = (category) => {
@@ -259,5 +240,42 @@ const removeCategory = (category) => {
 }
 
 const isEnabled = ref(true)
+
+const getUserDetails = async () => {
+  try {
+    
+    const response = await userService.getUser(
+      
+    ) 
+
+    user.value = response.data
+    
+  } catch (error) {
+
+  }
+}
+
+const getUserEvents = async () => {
+  try {
+
+    const response = await userService.getUserEvents({
+      size: 3
+    })
+    
+    console.log(response.data.content);
+    
+    
+    events.value = response.data.content
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+onMounted (() => {
+  getUserDetails()
+  getUserEvents()
+}
+)
 
 </script>

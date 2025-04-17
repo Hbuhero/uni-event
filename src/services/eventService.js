@@ -63,6 +63,42 @@ export const eventService = {
         } catch (error) {
 
         }
-    }
+    },
+
+    async getUserUpcomingEvents({ sortBy, sortDirection, size, first}) {
+        try {
+            const response = await api.get("user-event/upcoming",
+                {
+                    params: {
+                        sortBy: sortBy ,
+                        sortDirection: sortDirection ,
+                        size: size ,
+                        first: first
+                    }
+                }
+            )
+            return response.data
+        } catch (error) {
+
+        }
+    },
+
+    async getUserPastEvents({ sortBy, sortDirection, size, first}) {
+        try {
+            const response = await api.get("user-event/past",
+                {
+                    params: {
+                        sortBy: sortBy ,
+                        sortDirection: sortDirection ,
+                        size: size ,
+                        first: first
+                    }
+                }
+            )
+            return response.data
+        } catch (error) {
+
+        }
+    },
 }
 
